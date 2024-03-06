@@ -18,6 +18,7 @@
 
             <label for="version">Version:</label>
             <select id="version" name="version">
+<<<<<<< HEAD
                 <option value="26.1">26.1</option>
                 <option value="26">26</option>
             </select>
@@ -26,6 +27,16 @@
             <input type="text" id="term" name="term" value="{{ term }}" placeholder="Type term...">
             <p>LLT Name: {{ llt_name }}</p>
             <p>LLT Code: {{ llt_code }}</p>
+=======
+                <option value="36.1">36.1</option>
+                <option value="36">36</option>
+            </select>
+
+            <label for="term">Term:</label>
+            <input type="text" id="term" name="term" placeholder="Type something...">
+            <label for="term">{{ coded_term }}</label>
+
+>>>>>>> c4e71c108a8b6a3bb2c6e0752db9aae834916ac8
             <button type="submit">Submit</button>
         </form>
     </div>
