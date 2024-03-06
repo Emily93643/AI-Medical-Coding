@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medical Coding AI Assistant</title>
+    <link href="{{ url_for('static', filename= 'styles/style.css')}}" rel ="stylesheet" />
+</head>
+<body>
+
+    <div class="container">
+        <form action="/coding", id="myForm">
+            <label for="dict">Dictionary:</label>
+            <select id="dict" name="dict">
+                <option value="MedDRA">MedDRA</option>
+                <option value="WHODD">WHODD</option>
+            </select>
+
+            <label for="version">Version:</label>
+            <select id="version" name="version">
+                <option value="26.1">26.1</option>
+                <option value="26">26</option>
+            </select>
+
+            <label for="term">Term:</label>
+            <input type="text" id="term" name="term" placeholder="Type term...">
+
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+</body>
+</html>
