@@ -14,7 +14,7 @@ def get_coded_term(dict="MedDRA", version="36.1", term=""):
   
     df['Cos_Sim']=df.apply(lambda x: util.pytorch_cos_sim(x['LLT_Embeddings'], q_Embeddings).data[0,0].numpy(), axis=1)
     #coding_data = df.sort_values('Cos_Sim',ascending = False).groupby('term').head(1)
-    coding_data = df.sort_values('Cos_Sim',ascending = False).head(3)
+    coding_data = df.sort_values('Cos_Sim',ascending = False).head(10)
     return coding_data
     
 if __name__ == "__main__":

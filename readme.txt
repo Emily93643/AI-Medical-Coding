@@ -22,4 +22,4 @@ git branch -M main
 ##fix unrelated-histories issues
 git pull origin main --allow-unrelated-histories
 
-
+example: term= pulmonary infection llt: Lung infection
