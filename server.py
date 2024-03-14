@@ -15,7 +15,8 @@ def get_coding():
     dict = request.args.get('dict')
     version = request.args.get('version')
     term = request.args.get('term')
-
+    top_k = int(request.args.get('top_k'))
+    
     # check for empty string/string only spaces
     if not bool(dict.strip()):
         dict = "MedDRA"
@@ -24,17 +25,18 @@ def get_coding():
     if not bool(term.strip()):
         return render_template('index.html')
 
-    coding_data = get_coded_term(dict, version, term)
+    coding_data = get_coded_term(dict, version, term, top_k)
       
-    # city is not found by API
-#    if coding_data.empty:
- #       return render_template('code-not-found.html')
+  #    if coding_data.empty:
+  #       return render_template('code-not-found.html')
 
     return render_template(
         "coding.html", 
         term=term,
-        llt_name = coding_data.iloc[0, 0],
-        llt_code = coding_data.iloc[0, 1]
+        top_k=top_k,
+          json_data = coding_data[['term', 'llt_code', 'llt_name', 'pt_code', 'pt_name', 'soc_name', 'soc_code', 'hlt_name', 'hlt_code', 'hlgt_name', 'hlgt_code']].to_dict(orient='records'),
+        #llt_name = coding_data.iloc[0, 3],
+        #llt_code = coding_data.iloc[0, 1]
         #context= coding_data.loc[0, 'llt_code']
     )
 
