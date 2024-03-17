@@ -1,7 +1,6 @@
-from pprint import pprint
 from sentence_transformers import SentenceTransformer, util
 import pandas as pd
-import json
+import time
 
 def get_coded_term(dict="MedDRA", version="26.1", term="", top_k=1):
 
@@ -9,9 +8,9 @@ def get_coded_term(dict="MedDRA", version="26.1", term="", top_k=1):
 
     #Emebdding
     df = pd.read_pickle(r".\dict\meddra26_1_llt_embeddings_EV34.pkl")
+    
     term_list=[term]
-    q_Embeddings=model.encode(term_list, convert_to_tensor=True)
-  
+    q_Embeddings=model.encode(term_list, convert_to_tensor=True) 
     df['Cos_Sim']=df.apply(lambda x: util.pytorch_cos_sim(x['LLT_Embeddings'], q_Embeddings).data[0,0].numpy(), axis=1).tolist()
     #coding_data = df.sort_values('Cos_Sim',ascending = False).groupby('term').head(1)
     coding_key = df.sort_values('Cos_Sim',ascending = False).head(100)
@@ -32,10 +31,13 @@ if __name__ == "__main__":
     # #Check for empty strings/ only spaces
     # if not bool(city.strip()):
     #     city = "Toronto"
-
+    t_start=time.perf_counter()
     coding_data = get_coded_term(dict, version, term)
-    print("\n")
-    print(coding_data)
+    t_stop=time.perf_counter()
+    print("Elapsed time in seconds:",t_stop-t_start)
+   
+    #print("\n")
+    #print(coding_data)
     print("Shape of DataFrame:\n", coding_data.shape)
-    print("Column Names:\n", coding_data.columns.tolist())
-    print("Data Types of Columns:\n", coding_data.dtypes)
+    #print("Column Names:\n", coding_data.columns.tolist())
+    #print("Data Types of Columns:\n", coding_data.dtypes)
