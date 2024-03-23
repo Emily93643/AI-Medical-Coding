@@ -1,33 +1,94 @@
-body {
+html, body {
     font-family: 'Arial', sans-serif;
     background-color: #f4f4f4;
-    margin: 0;
-    padding: 0;
+    height: 100%;
+    border: 0px solid red;
+    padding: 0px;
+    margin: 0px;
 }
 
-.container {
-    max-width: 400px;
-    margin: 50px auto;
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+body.waiting * {
+    cursor: progress;
+}
+
+#wrapper {
+    background-color: #eee;
+    border: 0px solid yellow;
+    margin-left: 10px;
+    margin-right: 10px;
+    height: 100%;
+}
+
+#search-container {
+    display: flex;
+    align-items: left;
+    height: 40px;
+    border: 0px solid yellow;
+}
+
+div.search-container-left {
+    height: 100%;
+    align-items: left;
+    width: 40%;
+}
+
+div.search-container-right {
+    align-items: right;
+    height: 100%;
+    width: 60%;
+}
+
+#table-container {
+    display: flex;
+    align-items: left;
+    height: -moz-calc(100vh - 80px); /* Firefox */
+    height: -webkit-calc(100vh - 80px); /* Chrome, Safari */
+    height: calc(100vh - 80px); /* IE9+ and future browsers */
+    border: 0px solid blue;
+    display:block;
+    overflow-y: auto;
+}
+
+header {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 10px 15px;
+    background-image: linear-gradient(to bottom, #fff 0%, #eee 100%);
+    height: 80px 
+}
+  
+.content-header__title, .content-header h1 {
+    margin-right: 0.25rem;
+    margin-bottom: 0.25rem;
+    color: #555;
+    font-size: 1.75rem;
+    font-weight: normal;
+    text-shadow: 0 1px 0 #fff;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+content-header__details {
+    display: flex;
+    flex-wrap: nowrap;
+    flex-basis: 100%;
+}
+
+footer {
+    height: 40px;
+    background-color: red;
+}
+
+/* Additional styling for labels */
+label {
+    margin-right: 10px; /* Adjust as needed */
 }
 
 form {
     display: flex;
     flex-direction: column;
-}
-
-label {
-    margin-bottom: 8px;
-}
-
-select, input {
-    padding: 8px;
-    margin-bottom: 16px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
 }
 
 button {
@@ -43,3 +104,29 @@ button {
 button:hover {
     background-color: #45a049;
 }
+
+/* CSS for table */
+table {
+    border-collapse: collapse;
+    width: 100%;
+    font-family: Arial, sans-serif;
+}
+
+th, td {
+    border: 1px solid #dddddd;
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+tr:hover {
+    background-color: #dddddd;
+}
+
