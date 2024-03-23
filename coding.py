@@ -17,7 +17,8 @@ def get_coded_term(dict="MedDRA", version="26.1", term="", top_k=1):
     coding_key['term']=term
 
     dict = pd.read_csv(r".\dict\meddra26_1.csv")
-    coding_data = pd.merge(coding_key[['term', 'llt_code', 'Cos_Sim']], dict, on='llt_code', how='left')
+    ##coding_data = pd.merge(coding_key[['term', 'llt_code', 'Cos_Sim']], dict, on='llt_code', how='left')
+    coding_data = pd.merge(coding_key[['term', 'llt_code']], dict, on='llt_code', how='left')
     
     return coding_data
     
