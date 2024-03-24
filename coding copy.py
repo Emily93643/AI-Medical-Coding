@@ -7,26 +7,20 @@ def get_coded_term(dict="MedDRA", version="26.1", term="", top_k=1):
 
     model = SentenceTransformer('./model/all-MiniLM-EV34-L6-v2')
 
-    qdrant = QdrantClient("http://localhost:6333")
+    #Emebdding
+    df = pd.read_pickle(r".\dict\meddra26_1_llt_embeddings_EV34.pkl")
     
-    hits = qdrant.search(
-        collection_name="my_books",
-        query_vector=model.encode(term).tolist(),
-        limit=3,
-    )
+    term_list=[term]
+    q_Embeddings=model.encode(term_list, convert_to_tensor=True) 
+    df['Cos_Sim']=df.apply(lambda x: util.pytorch_cos_sim(x['LLT_Embeddings'], q_Embeddings).data[0,0].numpy(), axis=1).tolist()
+    #coding_data = df.sort_values('Cos_Sim',ascending = False).groupby('term').head(1)
+    coding_key = df.sort_values('Cos_Sim',ascending = False).head(100)
+    coding_key['term']=term
 
-    hit_arr = []
-
-    print(type(hits))
-    for hit in hits:
-        print(hit.payload, "score:", hit.score)
-        hit_arr.append(hit.payload) 
-
-
-    coding_data = hit_arr
-    print()
-    print(coding_data)
-
+    dict = pd.read_csv(r".\dict\meddra26_1.csv")
+    ##coding_data = pd.merge(coding_key[['term', 'llt_code', 'Cos_Sim']], dict, on='llt_code', how='left')
+    coding_data = pd.merge(coding_key[['term', 'llt_code']], dict, on='llt_code', how='left')
+    
     return coding_data
     
 if __name__ == "__main__":
@@ -46,6 +40,6 @@ if __name__ == "__main__":
    
     #print("\n")
     #print(coding_data)
-    # print("Shape of DataFrame:\n", coding_data.shape)
+    print("Shape of DataFrame:\n", coding_data.shape)
     #print("Column Names:\n", coding_data.columns.tolist())
     #print("Data Types of Columns:\n", coding_data.dtypes)

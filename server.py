@@ -32,7 +32,8 @@ def get_coding():
          return render_template('index.html')
 
       coding_data = get_coded_term(dict, version, term, top_k)
-      return jsonify(data=coding_data.to_json(orient="records"))
+    #   return jsonify(data=coding_data.to_json(orient="records"))
+      return jsonify(data=coding_data)
     else:
         return 'Only POST requests are allowed.'     
 
