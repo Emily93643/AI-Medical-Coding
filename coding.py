@@ -8,23 +8,20 @@ def get_coded_term(dict="MedDRA", version="26.1", term="", top_k=1):
     model = SentenceTransformer('./model/all-MiniLM-EV34-L6-v2')
 
     qdrant = QdrantClient("http://localhost:6333")
-    
     hits = qdrant.search(
         collection_name="my_books",
         query_vector=model.encode(term).tolist(),
-        limit=3,
+        limit=100,
     )
 
     hit_arr = []
-
-    print(type(hits))
     for hit in hits:
-        print(hit.payload, "score:", hit.score)
+        hit.payload['term']=term
+        hit.payload['score']=hit.score
         hit_arr.append(hit.payload) 
 
-
     coding_data = hit_arr
-    print()
+
     print(coding_data)
 
     return coding_data

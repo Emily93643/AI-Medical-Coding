@@ -8,10 +8,10 @@
     <link rel="stylesheet" href="{{ url_for('static', filename= 'styles/bootstrap.min.css')}}"/>
     <link rel="stylesheet" href="{{ url_for('static', filename= 'styles/bootstrap-table.min.css')}}"/>
     <link rel="stylesheet" href="{{ url_for('static', filename= 'fonts/bootstrap-icons.css')}}"/>
+    
     <script src="{{ url_for('static', filename= 'javascripts/jquery.min.js')}}"></script>
     <script src="{{ url_for('static', filename= 'javascripts/bootstrap.bundle.min.js')}}"></script>
     <script src="{{ url_for('static', filename= 'javascripts/bootstrap-table.min.js')}}"></script>
-    <script src="{{ url_for('static', filename= 'javascripts/auto-refresh/bootstrap-table-auto-refresh.min.js')}}"></script>
     <script src="{{ url_for('static', filename= 'javascripts/tableExport.min.js')}}"></script>
     <script src="{{ url_for('static', filename= 'javascripts/bootstrap-table-export.min.js')}}"></script>
  
@@ -93,7 +93,7 @@
             <th data-field="hlt_code" data-custom-attribute="hlt_code">HLT Code</th>
             <th data-field="hlgt_name" data-custom-attribute="hlgt_name">HLGT Name</th>
             <th data-field="hlgt_code" data-custom-attribute="hlgt_code">HLGT Code</th>
-        </tr>
+          </tr>
      </thead>
     </table>
    </div>
@@ -144,10 +144,11 @@
 
     // Function to generate HTML table from JSON data
     function populateData(data) {
-        
-        var data = JSON.parse(data);
-        var top_k = document.getElementById("top_k").value;
-        if (data.length > top_k) data.length = top_k;
+ 
+      var data = JSON.parse(JSON.stringify(data));
+
+      var top_k = document.getElementById("top_k").value;
+      if (data.length > top_k) data.length = top_k;
 
         var $table = $('#table')
         $(function() {
