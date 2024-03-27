@@ -17,21 +17,17 @@ def test():
 def get_coding():
     if request.method == 'POST':
       term = request.form['term']
-      #dict = request.form['dict']
-      version = request.form['version']
+      dict = request.form['dict']
       top_k = request.form['top_k']
- 
-      #term = request.json
-      
+       
       # check for empty string/string only spaces
-      #if not bool(dict.strip()):
-      dict = "MedDRA"
-      if not bool(version.strip()):
-         version = "26.1"
+      if not bool(dict.strip()):
+        dict = "meddra26_1"
+
       if not bool(term.strip()):
          return render_template('index.html')
 
-      coding_data = get_coded_term(dict, version, term, top_k)
+      coding_data = get_coded_term(dict, term, top_k)
     #   return jsonify(data=coding_data.to_json(orient="records"))
       return jsonify(data=coding_data)
     else:
