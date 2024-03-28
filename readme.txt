@@ -31,8 +31,7 @@ env1\bin\python -m pip freeze > requirements.txt
 env2\bin\python -m pip install -r requirements.txt
 
 docker pull qdrant/qdrant
-docker run -p 6333:6333 qdrant/qdrant
-
+docker run -p 6333:6333 -v ./qdrant_storage:/qdrant/storage:z qdrant/qdrant
 
     <title>AI-Powered Medical Coding Aid</title>
     <link href="{{ url_for('static', filename= 'styles/style.css')}}" rel ="stylesheet" />
@@ -45,10 +44,3 @@ docker run -p 6333:6333 qdrant/qdrant
     <script src="https://cdn.jsdelivr.net/npm/bootstrap-table@1.22.3/dist/extensions/auto-refresh/bootstrap-table-auto-refresh.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/tableexport.jquery.plugin@1.28.0/tableExport.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap-table@1.22.3/dist/extensions/export/bootstrap-table-export.min.js"></script>
-
-bootstrap-icons.woff2?30af91bf14e37666a085fb8a161ff36d
-
-
-   <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.22.3/dist/bootstrap-table.min.css">
-
-

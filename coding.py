@@ -44,7 +44,7 @@ def get_coded_term(dict="meddra26.1", term="", top_k=1):
     result_arr = []
     for result in response:
         result.payload['term']=term
-        result.payload['score']=result.score
+        result.payload['score']=round(result.score,2)
         result_arr.append(result.payload) 
 
     return result_arr
