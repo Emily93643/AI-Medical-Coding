@@ -7,11 +7,14 @@ html, body {
     margin: 0px;
 }
 
-/*for scrollable tbody - set data-hright="800" to allow tbodt scrollable, then adjust .fixed-table-body div height */
-.fixed-table-body {
-  height: -moz-calc(100vh - 240px)!important; /* Firefox */
-  height: -webkit-calc(100vh - 240px)!important; /* Chrome, Safari */
-  height: calc(100vh - 240px)!important; /* IE9+ and future browsers */
+tbody {
+    height: -moz-calc(100vh - 240px); /* Firefox */
+    height: -webkit-calc(100vh - 240px); /* Chrome, Safari */
+    height: calc(100vh - 240px); /* IE9+ and future browsers */
+    overflow: scroll;
+}
+
+tbody {
 }
 
 body.waiting * {
