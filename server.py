@@ -1,4 +1,4 @@
-from flask import Flask, render_template, make_response, jsonify, request
+from flask import Flask, render_template, jsonify, request
 from coding import get_coded_term
 from waitress import serve
 
@@ -11,7 +11,7 @@ def index():
 
 @app.route('/test')
 def test():
-    return render_template('test.html')
+    return render_template('test1.html')
 
 @app.route('/coding', methods=['POST'])
 def get_coding():
