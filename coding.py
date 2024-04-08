@@ -55,6 +55,8 @@ if __name__ == "__main__":
     dict = input("\nPlease enter a dict/version: ")
 
     dict_name = dict[:6]
+    print(dict_name)
+
     dict_version = float(dict[6:10])
     
 

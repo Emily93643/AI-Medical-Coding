@@ -7,7 +7,11 @@ app = Flask(__name__)
 @app.route('/')
 @app.route('/index')
 def index():
+    # str = pprint.pformat(request.environ, depth=5)
+    
     return render_template('index.html')
+
+    # return Response(str, mimetype="text/text")
 
 @app.route('/test')
 def test():
@@ -19,7 +23,6 @@ def get_coding():
       term = request.form['term']
       dict = request.form['dict']
       top_k = request.form['top_k']
-       
       # check for empty string/string only spaces
       if not bool(dict.strip()):
         dict = "meddra26_1"

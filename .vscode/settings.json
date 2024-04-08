@@ -1,4 +1,5 @@
 {
-    "search.useIgnoreFiles": true,
-    "svn.ignoreMissingSvnWarning": true
+  "search.useIgnoreFiles": true,
+  "svn.ignoreMissingSvnWarning": true,
+  "C_Cpp_Runner.msvcBatchPath": ""
 }
